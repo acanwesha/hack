@@ -13,7 +13,7 @@ class Teachermodel extends CI_Model
 
 	public function get_notes($teacher_id)
 	{
-		$query = $this->db->query("select * from notes where teacher_id='$teacher_id'");
+		$query = $this->db->query("select notes.*,subject_name from notes, subject where teacher_id='$teacher_id' and subject.subject_id=notes.subject_id");
 		return $query->result();
 	}
 

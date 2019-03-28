@@ -46,6 +46,9 @@
             </a>           
           </li>
         </ul>
+
+        <br><br><br>
+        <div><a href="../student/logout" ><button style="color: white; margin:auto" class="btn btn-default">Log out</button></a></div>
       </div>
       <!-- sidebar-menu  -->
     </div>

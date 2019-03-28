@@ -4,13 +4,17 @@ include 'student_sidebar_view.php';
 ?>
 
 <div class="content-wrapper">
-	<div class="subject" class="form-group">
+	<div class="subject-div" class="form-group">
 		<select name="subject" id="subject" class="form-control">
 			<option value="null" selected disabled>Select subject</option>
 			<?php foreach($subjects as $subject): ?>
 				<option value="<?php echo $subject->subject_id ?>"><?php echo $subject->subject_name ?></option>
 			<?php endforeach; ?>
 		</select>
+	</div>
+
+	<div class="notes-wrapper" id="notes-wrapper">
+		
 	</div>
 </div>
 

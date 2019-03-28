@@ -47,7 +47,7 @@ class Teacher extends CI_Controller
 		Teacher::$data['teacher_info'] = $teacher_info;
 		
 		if (!isset($_SESSION['teacher_id'])) {
-			 header("Location:home/index");
+			 header("Location:../home/index");
 
 		}
 	}
