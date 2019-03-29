@@ -1,6 +1,6 @@
 <?php 
 
-		
+
 class Teacher extends CI_Controller
 {
 	static $data = [];
@@ -16,27 +16,54 @@ class Teacher extends CI_Controller
 
 	public function add_notes()
 	{
-		// echo "<pre>";
-		// print_r($this->input->post());
+		
+		$config['upload_path']          = './assests/pdf';
+		$config['allowed_types']        = 'gif|jpg|png|pdf';
+		$config['max_size']             = 2000;
+		$config['max_width']            = 1024;
+		$config['max_height']           = 768;
 
-		// // print_r($_FILES["url"]);
-
+		$this->load->library('upload', $config);
 		$notes_data = $this->input->post();
-		$notes_data['file'] = (object) $_FILES["url"];
+		$notes_data['file_name'] = 'pdf/'.$_FILES['url']['name'];
 		$notes_data['teacher_id'] = $_SESSION['teacher_id'];
-		echo "<pre>";
-		print_r($notes_data);
-		echo "</pre>";
+		$file_name=str_replace(' ', '_', $notes_data['file_name']);
 
-		$this->teachermodel->submit_notes($notes_data);
+
+		if($this->upload->do_upload('url'))
+		{
+			$this->teachermodel->submit_notes($notes_data);
+			$this->index();
+		}		
 	}
 
 	public function events()
 	{
-		$this->load->view('events');
+		// $this->studentmodel->get_all_events();
+		$this->load->view('teacher/event_view',Teacher::$data);
+
+	}
+
+	public function answer()
+	{
+		Teacher::$data['queries'] = $this->teachermodel->get_ques_ans();
+		$this->load->view('teacher/answer_view',Teacher::$data);
 	}
 	
+	public function logout()
+	{
+		unset($_SESSION['teacher_id']);
+		header("Location:../home/index");
+	}
 
+	public function add_answer()
+	{
+		$form_data = $this->input->post();
+		$form_data['teacher_id'] = $_SESSION['teacher_id'];
+		$this->teachermodel->submit_answer($form_data);
+		header("Location:../teacher/answer");
+
+	}
 	function __construct()
 	{
 		parent::__construct();
@@ -47,7 +74,7 @@ class Teacher extends CI_Controller
 		Teacher::$data['teacher_info'] = $teacher_info;
 		
 		if (!isset($_SESSION['teacher_id'])) {
-			 header("Location:../home/index");
+			header("Location:../home/index");
 
 		}
 	}

@@ -36,3 +36,17 @@ $(document).ready(function(){
   
 
 });
+var hidden_html='';
+var val;
+$('#answer_button').click(function(){
+  
+ val = this.id;
+ hidden_html='<input type="hidden" name="q_id" value="'+val+'">'
+  $('#hidden_field').html(hidden_html);
+});
+
+function button_clicked(v){
+   val = v;
+ hidden_html='<input type="hidden" name="q_id" value="'+val+'">'
+  $('#hidden_field').html(hidden_html);
+}

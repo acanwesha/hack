@@ -28,13 +28,13 @@
                 </a>           
               </li>
               <li class="sidebar-dropdown" >
-                <a href="">              
+                <a href="../teacher/index">              
                   <span>Notes</span>              
                 </a>           
               </li>
               <li class="sidebar-dropdown">
-                <a href="#">              
-                  <span>Ask Question</span>              
+                <a href="../teacher/answer">              
+                  <span>Answer Question</span>              
                 </a>           
               </li>
               
@@ -45,11 +45,14 @@
               </li>
             </ul>
           </div>
-          <!-- sidebar-menu  -->
+          <br><br><br>
+          <div><a href="../teacher/logout" ><button style="color: white; margin:auto" class="btn btn-default">Log out</button></a></div>
         </div>
+        <!-- sidebar-menu  -->
+      </div>
 
-      </nav>
-      <!-- sidebar-wrapper  -->
-    </div>
-  </body>
+    </nav>
+    <!-- sidebar-wrapper  -->
+  </div>
+</body>
 

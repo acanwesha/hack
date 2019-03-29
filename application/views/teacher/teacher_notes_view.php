@@ -38,44 +38,45 @@
 
 
 								</select>
-								<div class="form-group" style="font-size: 1em;">
+							</div>
+							<div class="form-group" style="font-size: 1em;">
 								<label for="url">File</label>
 								<input type="file" class="form-control" id="url" name="url" placeholder="Select notes file" required="required">
 							</div>
 
-								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-									<button type="submit" class="btn btn-primary">Submit</button>
-								</div>
-							</form>
-						</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								<button type="submit" class="btn btn-primary">Submit</button>
+							</div>
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<?php foreach($notes as $note): ?>
+		<div class="card mb-3">
+
+			<div class="card-body">
+				<embed src="<?php echo '../assests/'.$note->url; ?>" width="80%" height="200px" />
+					<a href="<?php echo '../assests/'.$note->url;  ?>" target="_blank">Download</a>
+					<h5 class="card-title"><?php echo $note->title ?></h5>
+					<small><?php echo $note->subject_name ?></small>
+					<p class="card-text"><?php echo $note->description ?></p>
+					<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+
+					<div>
+						<i class="fa fa-star" aria-hidden="true" ></i>Rating: <span><?php echo $note->rating ?></span>
+						<span style="float:right"><i class="fa fa-download" aria-hidden="true"></i>Downloads <span><?php echo $note->downloads ?></span></span>
 
 					</div>
 				</div>
 			</div>
-		</div>
+		<?php endforeach; ?>
 
+	</div>
 
-		<?php foreach($notes as $note): ?>
-			<div class="card mb-3">
-
-				<div class="card-body">
-					<embed src="<?php echo '../assests/'.$note->url; ?>" width="80%" height="200px" />
-						<a href="<?php echo '../assests/'.$note->url;  ?>" target="_blank">Download</a>
-						<h5 class="card-title"><?php echo $note->title ?></h5>
-						<small><?php echo $note->subject_name ?></small>
-						<p class="card-text"><?php echo $note->description ?></p>
-						<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-
-						<div>
-							<i class="fa fa-star" aria-hidden="true" ></i>Rating: <span><?php echo $note->rating ?></span>
-							<span style="float:right"><i class="fa fa-download" aria-hidden="true"></i>Downloads <span><?php echo $note->downloads ?></span></span>
-
-						</div>
-					</div>
-				</div>
-			<?php endforeach; ?>
-
-		</div>
-
-		<?php include 'teacher_footer_view.php'; ?>
+	<?php include 'teacher_footer_view.php'; ?>

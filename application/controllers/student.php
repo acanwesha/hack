@@ -25,7 +25,11 @@ class Student extends CI_Controller {
 	}
 	public function query()
 	{
-		$this->load->view('student/query_view');		
+		$subject_list = $this->studentmodel->get_all_subjects($_SESSION['usn']);
+
+		Student::$data['subjects'] = $subject_list;	
+		Student::$data['queries'] =  $this->studentmodel->get_ques_ans($_SESSION['usn']);
+		$this->load->view('student/query_view',Student::$data);		
 	}
 
 
@@ -34,6 +38,13 @@ class Student extends CI_Controller {
 
 	}
 
+	public function submit_query()
+	{
+		$form_data = $this->input->post();
+		$form_data['usn'] = $_SESSION['usn'];
+		$this->studentmodel->submit_query($form_data);
+		header("Location:../student/query");
+	}
 	public function logout()
 	{
 		unset($_SESSION['usn']);
